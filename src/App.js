@@ -3,10 +3,15 @@ import { View, Text } from 'react-native';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import firebase from 'firebase';
-import firebaseConfig from './firebaseSetup.js';
+import firebaseConfig from './firebaseConfig.js';
 import reducers from './reducers';
 
 class App extends Component {
+  componentWillMount() {
+    const config = firebaseConfig;
+    firebase.initializeApp(firebaseConfig);
+  }
+
   render() {
     return (
       <Provider store={createStore(reducers)}>
